@@ -44,6 +44,7 @@ def get_actor():
 
 
 def get_by_genre():
+        print("Searching by Genre...")
         pass 
 
 
