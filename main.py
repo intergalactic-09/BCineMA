@@ -19,18 +19,12 @@ def get_genre():
     except:
          print('Files does not exist')  
 
-def get_title():
+def get_titles():
     try:
         movies = l_of_movies()
-        userTitle = input(" Which movie title are you looking for?: ")
-        loading = ""
         for movie in movies:
             title = movie["Movie Title"]
-            if (title.lower() == userTitle.lower()):
-                display_movie_details(movie)
-                break
-            loading += "."
-            print(loading)
+            print(title)
     except:
          print('Files does not exist')
 
@@ -51,8 +45,16 @@ def get_by_genre():
         pass 
 
 
-def get_by_title():
-        pass
+def get_by_title(title):
+    movies = l_of_movies()
+    loading = ""
+    for movie in movies:
+        movieTitle = movie["Movie Title"]
+        if (movieTitle.lower() == title.lower()):
+            display_movie_details(movie)
+            break
+        loading += "."
+        print(loading)
 
 
 def get_by_actor():
@@ -74,15 +76,23 @@ def display_movie_details(movie):
         print("*** /YOUR MOVIE ***")
         pass
 
-print("Main Menu")
+
+def display_text(text):
+    for char in text:
+        print(char, end = '', flush = True)
+        time.sleep(0.05)
+    print("")
+
+    
+display_text("Main Menu")
 time.sleep(2)
-print("Welcome to BCineMA!: ")
+display_text("Welcome to BCineMA!: ")
 time.sleep(1.5)
-print("We offer you selections of movies, and sort them based on three factors.")
+display_text("We offer you selections of movies, and sort them based on three factors.")
 time.sleep(1.2)
-print("That you can choose from ")
+display_text("That you can choose from ")
 time.sleep(1.5)
-print("Based on their titles, actors, and genres.")
+display_text("Based on their titles, actors, and genres.")
 time.sleep(2)
 
 while True:
@@ -95,7 +105,9 @@ while True:
         if (opt == 1):
             get_genre()
         elif(opt == 2):
-            get_title()
+            get_titles()
+            userTitle = input(" Which movie title are you looking for?: ")
+            get_by_title(userTitle)
         elif(opt == 3):
             get_actor()
         elif(opt == 4):
